@@ -1,13 +1,52 @@
 [
     {
+        "id": "535331d8.55c1f",
+        "type": "tab",
+        "label": "Basics - Messages",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ac14500e.2c57d",
+        "type": "tab",
+        "label": "Basics - Flow control",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "fc046f99.4be08",
+        "type": "tab",
+        "label": "Basics - Error handling",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "64133d39.bb0394",
+        "type": "tab",
+        "label": "Basic - Working with data formats",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "3045204d.cfbae",
         "type": "tab",
-        "label": "HTTP Flows"
+        "label": "HTTP endpoints",
+        "disabled": false,
+        "info": ""
     },
     {
         "id": "55635136.aa9cb",
         "type": "tab",
-        "label": "HTTP Request Flows"
+        "label": "HTTP requests",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b571704d.6c591",
+        "type": "tab",
+        "label": "MQTT",
+        "disabled": true,
+        "info": ""
     },
     {
         "id": "fbff916c.a2953",
@@ -15,11 +54,25 @@
         "label": "Split/Join"
     },
     {
-        "id": "535331d8.55c1f",
-        "type": "tab",
-        "label": "Basics",
-        "disabled": false,
-        "info": ""
+        "id": "b439d8b0.991988",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
     },
     {
         "id": "59ff2a1.fa600d4",
@@ -268,9 +321,9 @@
         "id": "291d5680.d6e2aa",
         "type": "comment",
         "z": "3045204d.cfbae",
-        "name": "1. Serve static content",
+        "name": "Create an HTTP Endpoint",
         "info": "    curl http://localhost:1880/hello",
-        "x": 120,
+        "x": 130,
         "y": 40,
         "wires": []
     },
@@ -278,9 +331,9 @@
         "id": "f26288ce.0d9d78",
         "type": "comment",
         "z": "3045204d.cfbae",
-        "name": "2. Use query parameters",
+        "name": "Handle query parameters passed to an HTTP endpoint",
         "info": "    curl http://localhost:1880/hello-query?name=Nick",
-        "x": 130,
+        "x": 220,
         "y": 140,
         "wires": []
     },
@@ -288,9 +341,9 @@
         "id": "f7d4f2bf.082b1",
         "type": "comment",
         "z": "3045204d.cfbae",
-        "name": "3. Use url parameters",
+        "name": "Handle url parameters in an HTTP endpoint",
         "info": "    curl http://localhost:1880/hello-query/Nick",
-        "x": 120,
+        "x": 190,
         "y": 240,
         "wires": []
     },
@@ -298,7 +351,7 @@
         "id": "97c71382.6838f",
         "type": "comment",
         "z": "3045204d.cfbae",
-        "name": "5. Include data captured in another flow",
+        "name": "Include data captured in another flow",
         "info": "    curl http://localhost:1880/hello-data",
         "x": 170,
         "y": 440,
@@ -351,9 +404,9 @@
         "id": "d737e5a0.28c818",
         "type": "comment",
         "z": "3045204d.cfbae",
-        "name": "6. Serve JSON content",
+        "name": "Serve JSON content",
         "info": "    curl http://localhost:1880/hello-json",
-        "x": 120,
+        "x": 110,
         "y": 580,
         "wires": []
     },
@@ -420,9 +473,9 @@
         "id": "84fb0840.7b04f8",
         "type": "comment",
         "z": "3045204d.cfbae",
-        "name": "7. Serve a local file",
+        "name": "Serve a local file",
         "info": "Without content-type set, the browser will\ndownload the file rather than display it.\n\nNeed to set content-type to the correct\nmime type for the file.\n\n    curl http://localhost:1880/hello-file",
-        "x": 110,
+        "x": 100,
         "y": 680,
         "wires": []
     },
@@ -484,7 +537,7 @@
         "method": "post",
         "swaggerDoc": "",
         "x": 120,
-        "y": 820,
+        "y": 920,
         "wires": [
             [
                 "bba61009.4459f"
@@ -502,7 +555,7 @@
         "syntax": "mustache",
         "template": "<html>\n    <head></head>\n    <body>\n        <h1>Hello {{ payload.name }}!</h1>\n    </body>\n</html>",
         "x": 290,
-        "y": 820,
+        "y": 920,
         "wires": [
             [
                 "6ceb930a.93146c"
@@ -515,17 +568,17 @@
         "z": "3045204d.cfbae",
         "name": "",
         "x": 430,
-        "y": 820,
+        "y": 920,
         "wires": []
     },
     {
         "id": "f9cc40a3.0633c",
         "type": "comment",
         "z": "3045204d.cfbae",
-        "name": "8. Post form/JSON data",
+        "name": "Post form/JSON data",
         "info": "Posting form data - `application/x-www-form-urlencoded`\n\n    curl -X POST -d \"name=Nick\" http://localhost:1880/hello-form\n    \n    \nPosting JSON data - `application/json`\n\n    curl -X POST -d '{\"name\":\"Nick\"}' -h \"Content-type: application/json\" http://localhost:1880/hello-form",
         "x": 120,
-        "y": 780,
+        "y": 880,
         "wires": []
     },
     {
@@ -537,7 +590,7 @@
         "method": "post",
         "swaggerDoc": "",
         "x": 120,
-        "y": 920,
+        "y": 820,
         "wires": [
             [
                 "cf679478.309868"
@@ -555,7 +608,7 @@
         "syntax": "mustache",
         "template": "<html>\n    <head></head>\n    <body>\n        <h1>Hello {{ payload }}!</h1>\n    </body>\n</html>",
         "x": 290,
-        "y": 920,
+        "y": 820,
         "wires": [
             [
                 "f3c1a3f0.0c3e6"
@@ -568,17 +621,17 @@
         "z": "3045204d.cfbae",
         "name": "",
         "x": 430,
-        "y": 920,
+        "y": 820,
         "wires": []
     },
     {
         "id": "932fb31d.6cd05",
         "type": "comment",
         "z": "3045204d.cfbae",
-        "name": "9. Post raw data",
+        "name": "Post raw data",
         "info": "Posting raw data - `text/plain`\n\n    curl -X POST -d 'Nick' -h \"Content-type: text/plain\" http://localhost:1880/hello-raw",
-        "x": 100,
-        "y": 880,
+        "x": 90,
+        "y": 780,
         "wires": []
     },
     {
@@ -628,9 +681,9 @@
         "id": "b134c227.4ecb4",
         "type": "comment",
         "z": "3045204d.cfbae",
-        "name": "4. Access HTTP request headers",
+        "name": "Access HTTP request headers",
         "info": "    curl http://localhost:1880/hello-query/Nick",
-        "x": 150,
+        "x": 140,
         "y": 340,
         "wires": []
     },
@@ -685,9 +738,9 @@
         "id": "ff8148a.f007eb8",
         "type": "comment",
         "z": "55635136.aa9cb",
-        "name": "1. Simple GET request",
+        "name": "Simple GET request",
         "info": "    curl http://localhost:1880/hello",
-        "x": 120,
+        "x": 110,
         "y": 40,
         "wires": []
     },
@@ -742,9 +795,9 @@
         "id": "f448390.f0bb7c8",
         "type": "comment",
         "z": "55635136.aa9cb",
-        "name": "2. Set the url of a request",
+        "name": "Set the url of a request",
         "info": "",
-        "x": 130,
+        "x": 120,
         "y": 140,
         "wires": []
     },
@@ -826,9 +879,9 @@
         "id": "4ebc2616.b143d8",
         "type": "comment",
         "z": "55635136.aa9cb",
-        "name": "3. Set the url of a request using a template",
+        "name": "Set the url of a request using a template",
         "info": "",
-        "x": 180,
+        "x": 170,
         "y": 240,
         "wires": []
     },
@@ -836,9 +889,9 @@
         "id": "c6cf0634.3930f8",
         "type": "comment",
         "z": "55635136.aa9cb",
-        "name": "5. Get a parsed JSON response",
+        "name": "Get a parsed JSON response",
         "info": "",
-        "x": 150,
+        "x": 140,
         "y": 440,
         "wires": []
     },
@@ -893,9 +946,9 @@
         "id": "f57bc2d1.0a844",
         "type": "comment",
         "z": "55635136.aa9cb",
-        "name": "6. Get a binary response",
+        "name": "Get a binary response",
         "info": "",
-        "x": 130,
+        "x": 120,
         "y": 540,
         "wires": []
     },
@@ -950,9 +1003,9 @@
         "id": "ee917332.116e9",
         "type": "comment",
         "z": "55635136.aa9cb",
-        "name": "7. Set a request header",
+        "name": "Set a request header",
         "info": "",
-        "x": 120,
+        "x": 110,
         "y": 640,
         "wires": []
     },
@@ -1088,7 +1141,7 @@
         "id": "73e91392.8c16ec",
         "type": "comment",
         "z": "55635136.aa9cb",
-        "name": "4. Set query string parameters",
+        "name": "Set query string parameters",
         "info": "The url template must use {{{triple}}}-braces\nso it doesn't get escaped",
         "x": 140,
         "y": 340,
@@ -1114,7 +1167,7 @@
         "id": "2ce1c654.d31e3a",
         "type": "comment",
         "z": "55635136.aa9cb",
-        "name": "8. Respond with the result of an HTTP request",
+        "name": "* Respond with the result of an HTTP request",
         "info": "    curl http://localhost:1880/hello-proxy",
         "x": 190,
         "y": 740,
@@ -1233,9 +1286,9 @@
         "id": "64ff5340.82cb0c",
         "type": "comment",
         "z": "3045204d.cfbae",
-        "name": "10. Work with cookies",
+        "name": "Work with cookies",
         "info": "",
-        "x": 120,
+        "x": 110,
         "y": 980,
         "wires": []
     },
@@ -1624,9 +1677,9 @@
         "id": "852f98f5.6f3b48",
         "type": "comment",
         "z": "535331d8.55c1f",
-        "name": "Set message property",
+        "name": "Set a message property to a fixed value",
         "info": "",
-        "x": 120,
+        "x": 170,
         "y": 40,
         "wires": []
     },
@@ -1863,9 +1916,329 @@
         ]
     },
     {
-        "id": "e60b12c1.93bb3",
+        "id": "80da1f72.7a01e",
+        "type": "comment",
+        "z": "b571704d.6c591",
+        "name": "Connect to an MQTT Broker",
+        "info": "",
+        "x": 140,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "5d3fc91.775a038",
+        "type": "mqtt out",
+        "z": "b571704d.6c591",
+        "name": "",
+        "topic": "sensors/livingroom/temp",
+        "qos": "",
+        "retain": "",
+        "broker": "b439d8b0.991988",
+        "x": 290,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "c548c8e9.801fa8",
         "type": "inject",
-        "z": "535331d8.55c1f",
+        "z": "b571704d.6c591",
+        "name": "",
+        "topic": "",
+        "payload": "22",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "5d3fc91.775a038"
+            ]
+        ]
+    },
+    {
+        "id": "6ae5ef55.9290b",
+        "type": "mqtt in",
+        "z": "b571704d.6c591",
+        "name": "",
+        "topic": "sensors/livingroom/temp",
+        "qos": "2",
+        "broker": "b439d8b0.991988",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "e314de99.9048f"
+            ]
+        ]
+    },
+    {
+        "id": "e314de99.9048f",
+        "type": "debug",
+        "z": "b571704d.6c591",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 350,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "eb2fc778.d4a378",
+        "type": "comment",
+        "z": "b571704d.6c591",
+        "name": "Publish to a Topic",
+        "info": "",
+        "x": 110,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3dfed8ec.e91a78",
+        "type": "mqtt out",
+        "z": "b571704d.6c591",
+        "name": "",
+        "topic": "sensors/livingroom/temp",
+        "qos": "",
+        "retain": "",
+        "broker": "b439d8b0.991988",
+        "x": 330,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "73a82491.feb28c",
+        "type": "inject",
+        "z": "b571704d.6c591",
+        "name": "temperature",
+        "topic": "",
+        "payload": "22",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 110,
+        "y": 220,
+        "wires": [
+            [
+                "3dfed8ec.e91a78"
+            ]
+        ]
+    },
+    {
+        "id": "7bea6336.0d6cdc",
+        "type": "comment",
+        "z": "b571704d.6c591",
+        "name": "Set the topic of a published message",
+        "info": "",
+        "x": 170,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "d554d542.0cf108",
+        "type": "mqtt out",
+        "z": "b571704d.6c591",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "b439d8b0.991988",
+        "x": 310,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "c5efd98e.9ad2f8",
+        "type": "inject",
+        "z": "b571704d.6c591",
+        "name": "kitchen temperature",
+        "topic": "sensors/kitchen/temperature",
+        "payload": "22",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 130,
+        "y": 320,
+        "wires": [
+            [
+                "d554d542.0cf108"
+            ]
+        ]
+    },
+    {
+        "id": "58c99d82.dbfd54",
+        "type": "comment",
+        "z": "b571704d.6c591",
+        "name": "Subscribe to a Topic",
+        "info": "",
+        "x": 110,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "5c92c689.b67458",
+        "type": "mqtt in",
+        "z": "b571704d.6c591",
+        "name": "",
+        "topic": "sensors/#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b439d8b0.991988",
+        "x": 80,
+        "y": 520,
+        "wires": [
+            [
+                "a26e21e1.de075"
+            ]
+        ]
+    },
+    {
+        "id": "a26e21e1.de075",
+        "type": "debug",
+        "z": "b571704d.6c591",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 230,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "a172eabf.7b7218",
+        "type": "comment",
+        "z": "b571704d.6c591",
+        "name": "Publish a retained message to a topic",
+        "info": "",
+        "x": 170,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "9f9556a3.c298d8",
+        "type": "mqtt out",
+        "z": "b571704d.6c591",
+        "name": "",
+        "topic": "sensors/livingroom/temp",
+        "qos": "",
+        "retain": "true",
+        "broker": "b439d8b0.991988",
+        "x": 310,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "a55dd0e1.a02ae",
+        "type": "inject",
+        "z": "b571704d.6c591",
+        "name": "temperature",
+        "topic": "",
+        "payload": "22",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 110,
+        "y": 420,
+        "wires": [
+            [
+                "9f9556a3.c298d8"
+            ]
+        ]
+    },
+    {
+        "id": "12526f79.5dc901",
+        "type": "comment",
+        "z": "b571704d.6c591",
+        "name": "Receive a Parsed JSON Message",
+        "info": "",
+        "x": 160,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "12f4b1f9.ef698e",
+        "type": "mqtt in",
+        "z": "b571704d.6c591",
+        "name": "",
+        "topic": "sensors/#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b439d8b0.991988",
+        "x": 240,
+        "y": 680,
+        "wires": [
+            [
+                "177dcc5c.4fc9e4"
+            ]
+        ]
+    },
+    {
+        "id": "c755b9fb.a6e4b8",
+        "type": "debug",
+        "z": "b571704d.6c591",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 510,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "54039f03.f1f82",
+        "type": "mqtt out",
+        "z": "b571704d.6c591",
+        "name": "",
+        "topic": "sensors/livingroom/temp",
+        "qos": "",
+        "retain": "false",
+        "broker": "b439d8b0.991988",
+        "x": 290,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "6ecdedfb.c83784",
+        "type": "inject",
+        "z": "b571704d.6c591",
+        "name": "temp json",
+        "topic": "",
+        "payload": "{\"sensor_id\":1234,\"temperature\":13}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 100,
+        "y": 620,
+        "wires": [
+            [
+                "54039f03.f1f82"
+            ]
+        ]
+    },
+    {
+        "id": "177dcc5c.4fc9e4",
+        "type": "json",
+        "z": "b571704d.6c591",
+        "name": "",
+        "pretty": false,
+        "x": 370,
+        "y": 680,
+        "wires": [
+            [
+                "c755b9fb.a6e4b8"
+            ]
+        ]
+    },
+    {
+        "id": "265b1392.ee67ec",
+        "type": "inject",
+        "z": "ac14500e.2c57d",
         "name": "",
         "topic": "",
         "payload": "Started!",
@@ -1874,29 +2247,29 @@
         "crontab": "",
         "once": true,
         "x": 140,
-        "y": 540,
+        "y": 80,
         "wires": [
             [
-                "9b1d7727.56d0f8"
+                "2443ea4e.859c46"
             ]
         ]
     },
     {
-        "id": "9b1d7727.56d0f8",
+        "id": "2443ea4e.859c46",
         "type": "debug",
-        "z": "535331d8.55c1f",
+        "z": "ac14500e.2c57d",
         "name": "",
         "active": true,
         "console": "false",
         "complete": "false",
         "x": 410,
-        "y": 540,
+        "y": 80,
         "wires": []
     },
     {
-        "id": "372cfc32.bcd244",
+        "id": "5d96e2bf.be9ddc",
         "type": "inject",
-        "z": "535331d8.55c1f",
+        "z": "ac14500e.2c57d",
         "name": "",
         "topic": "",
         "payload": "",
@@ -1905,29 +2278,29 @@
         "crontab": "",
         "once": false,
         "x": 150,
-        "y": 600,
+        "y": 180,
         "wires": [
             [
-                "6c63c499.ce3adc"
+                "83bc41f5.4f2fb"
             ]
         ]
     },
     {
-        "id": "6c63c499.ce3adc",
+        "id": "83bc41f5.4f2fb",
         "type": "debug",
-        "z": "535331d8.55c1f",
+        "z": "ac14500e.2c57d",
         "name": "",
         "active": true,
         "console": "false",
         "complete": "false",
         "x": 410,
-        "y": 600,
+        "y": 180,
         "wires": []
     },
     {
-        "id": "24579bcb.5c9814",
+        "id": "f990b44f.7b5fa8",
         "type": "inject",
-        "z": "535331d8.55c1f",
+        "z": "ac14500e.2c57d",
         "name": "",
         "topic": "",
         "payload": "It is 4pm on a weekday!",
@@ -1936,114 +2309,203 @@
         "crontab": "00 16 * * 1,2,3,4,5",
         "once": false,
         "x": 190,
-        "y": 660,
+        "y": 280,
         "wires": [
             [
-                "145b508a.f3325f"
+                "e692b739.966c98"
             ]
         ]
     },
     {
-        "id": "145b508a.f3325f",
+        "id": "e692b739.966c98",
         "type": "debug",
-        "z": "535331d8.55c1f",
+        "z": "ac14500e.2c57d",
         "name": "",
         "active": true,
         "console": "false",
         "complete": "false",
         "x": 410,
-        "y": 660,
+        "y": 280,
         "wires": []
     },
     {
-        "id": "b7c88c3.b0cce7",
-        "type": "inject",
-        "z": "535331d8.55c1f",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 85,
-        "y": 925,
-        "wires": [
-            [
-                "f6db2e5d.bd8b6"
-            ]
-        ]
-    },
-    {
-        "id": "f6db2e5d.bd8b6",
-        "type": "function",
-        "z": "535331d8.55c1f",
-        "name": "m",
-        "func": "msg.payload = flow.keys();\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 186,
-        "y": 964,
-        "wires": [
-            [
-                "6dbb808c.9026f"
-            ]
-        ]
-    },
-    {
-        "id": "6dbb808c.9026f",
-        "type": "debug",
-        "z": "535331d8.55c1f",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "false",
-        "x": 426,
-        "y": 951,
+        "id": "136cee19.ca58b2",
+        "type": "comment",
+        "z": "ac14500e.2c57d",
+        "name": "Trigger a flow whenever Node-RED starts",
+        "info": "",
+        "x": 180,
+        "y": 40,
         "wires": []
     },
     {
-        "id": "b4cf8c4.e306e7",
-        "type": "inject",
-        "z": "535331d8.55c1f",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 131,
-        "y": 800,
-        "wires": [
-            [
-                "89e52ede.acb12"
-            ]
-        ]
+        "id": "a6d5600.1c7eea",
+        "type": "comment",
+        "z": "ac14500e.2c57d",
+        "name": "Trigger a flow at regular intervals",
+        "info": "",
+        "x": 150,
+        "y": 140,
+        "wires": []
     },
     {
-        "id": "89e52ede.acb12",
-        "type": "change",
-        "z": "535331d8.55c1f",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "flow",
-                "to": "awfg",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 386,
-        "y": 812,
-        "wires": [
-            []
-        ]
+        "id": "3acad048.5c037",
+        "type": "comment",
+        "z": "ac14500e.2c57d",
+        "name": "Trigger a flow at a specific time",
+        "info": "",
+        "x": 150,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "a7fce675.df3738",
+        "type": "comment",
+        "z": "ac14500e.2c57d",
+        "name": "Route a message based on one of its properties",
+        "info": "",
+        "x": 200,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "bbfb8d73.afa31",
+        "type": "comment",
+        "z": "ac14500e.2c57d",
+        "name": "Route a message based on a context property",
+        "info": "",
+        "x": 190,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "e5761a48.6ace18",
+        "type": "comment",
+        "z": "ac14500e.2c57d",
+        "name": "Perform an operation on each element in an array",
+        "info": "",
+        "x": 200,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "508c5fc0.cd11e",
+        "type": "comment",
+        "z": "ac14500e.2c57d",
+        "name": "Trigger a flow if a message isn’t received after a defined time",
+        "info": "",
+        "x": 240,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "596b34ad.e16b1c",
+        "type": "comment",
+        "z": "ac14500e.2c57d",
+        "name": "Limit the rate of messages passing through a flow",
+        "info": "",
+        "x": 210,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "11644ecd.879951",
+        "type": "comment",
+        "z": "ac14500e.2c57d",
+        "name": "Trigger a flow when a message property changes value",
+        "info": "",
+        "x": 220,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "cd480112.39f77",
+        "type": "comment",
+        "z": "ac14500e.2c57d",
+        "name": "Create a simple state machine",
+        "info": "",
+        "x": 140,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "db551bcf.2c92c8",
+        "type": "comment",
+        "z": "fc046f99.4be08",
+        "name": "Trigger a flow when a node throws an error",
+        "info": "",
+        "x": 180,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "b71a5cdb.ddf81",
+        "type": "comment",
+        "z": "fc046f99.4be08",
+        "name": "Automatically retry an action after an error",
+        "info": "",
+        "x": 180,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "847e1c97.0ea93",
+        "type": "comment",
+        "z": "64133d39.bb0394",
+        "name": "Convert to/from JSON",
+        "info": "",
+        "x": 120,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "d9c8aeff.11e71",
+        "type": "comment",
+        "z": "64133d39.bb0394",
+        "name": "Convert to/from XML",
+        "info": "",
+        "x": 120,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "48d7a3d2.81a6ac",
+        "type": "comment",
+        "z": "64133d39.bb0394",
+        "name": "Convert to/from YAML",
+        "info": "",
+        "x": 120,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "329ba7c9.e54c18",
+        "type": "comment",
+        "z": "64133d39.bb0394",
+        "name": "Convert to/from CSV",
+        "info": "",
+        "x": 120,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "34f8ae9e.6c03d2",
+        "type": "comment",
+        "z": "64133d39.bb0394",
+        "name": "Extracting data from an HTML page",
+        "info": "",
+        "x": 160,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "8fa4a297.9f87d",
+        "type": "comment",
+        "z": "64133d39.bb0394",
+        "name": "Split text into one message per line",
+        "info": "",
+        "x": 160,
+        "y": 340,
+        "wires": []
     }
 ]
