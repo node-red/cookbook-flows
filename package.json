@@ -1,0 +1,9 @@
+{
+    "name": "cookbook-flows",
+    "description": "A Node-RED Project",
+    "version": "0.0.1",
+    "dependencies": {},
+    "node-red": {
+        "settings": {}
+    }
+}
