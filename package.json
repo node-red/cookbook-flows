@@ -1,6 +1,6 @@
 {
     "name": "cookbook-flows",
-    "description": "A Node-RED Project",
+    "description": "A Node-RED Project containing flows from cookbook.nodered.org",
     "version": "0.0.1",
     "dependencies": {},
     "node-red": {
