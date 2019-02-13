@@ -2083,7 +2083,7 @@
         "type": "debug",
         "z": "ac14500e.2c57d",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "false",
         "x": 410,
@@ -2205,10 +2205,10 @@
         "id": "cd480112.39f77",
         "type": "comment",
         "z": "ac14500e.2c57d",
-        "name": "Create a simple state machine",
+        "name": "Send placeholder messages when a stream stops sending",
         "info": "",
-        "x": 140,
-        "y": 1600,
+        "x": 230,
+        "y": 1620,
         "wires": []
     },
     {
@@ -3898,6 +3898,113 @@
         "wires": [
             [
                 "d44d4767.945fd8"
+            ]
+        ]
+    },
+    {
+        "id": "9ccdf268.c96ff",
+        "type": "inject",
+        "z": "ac14500e.2c57d",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 1660,
+        "wires": [
+            [
+                "38950a5.28d15f6",
+                "2c532f67.0330e",
+                "40589e4.eccb56"
+            ]
+        ]
+    },
+    {
+        "id": "38950a5.28d15f6",
+        "type": "debug",
+        "z": "ac14500e.2c57d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 650,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "2c532f67.0330e",
+        "type": "trigger",
+        "z": "ac14500e.2c57d",
+        "op1": "",
+        "op2": "true",
+        "op1type": "nul",
+        "op2type": "bool",
+        "duration": "2",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "name": "",
+        "x": 280,
+        "y": 1700,
+        "wires": [
+            [
+                "e4e42b96.97a338"
+            ]
+        ]
+    },
+    {
+        "id": "e4e42b96.97a338",
+        "type": "trigger",
+        "z": "ac14500e.2c57d",
+        "op1": "0",
+        "op2": "0",
+        "op1type": "num",
+        "op2type": "str",
+        "duration": "-2",
+        "extend": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "name": "",
+        "x": 460,
+        "y": 1700,
+        "wires": [
+            [
+                "38950a5.28d15f6"
+            ]
+        ]
+    },
+    {
+        "id": "40589e4.eccb56",
+        "type": "change",
+        "z": "ac14500e.2c57d",
+        "name": "msg.reset",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 1740,
+        "wires": [
+            [
+                "e4e42b96.97a338"
             ]
         ]
     }
