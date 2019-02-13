@@ -49,25 +49,6 @@
         "info": ""
     },
     {
-        "id": "fbff916c.a2953",
-        "type": "tab",
-        "label": "Split/Join"
-    },
-    {
-        "id": "aa699cd0.ba3fc",
-        "type": "tab",
-        "label": "Flow 5",
-        "disabled": false,
-        "info": ""
-    },
-    {
-        "id": "6aaa99b3.a7b7b8",
-        "type": "tab",
-        "label": "Flow control",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "b439d8b0.991988",
         "type": "mqtt-broker",
         "z": "",
@@ -1412,208 +1393,6 @@
         ]
     },
     {
-        "id": "e57467dc.abac78",
-        "type": "inject",
-        "z": "fbff916c.a2953",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 120,
-        "y": 80,
-        "wires": [
-            [
-                "61d047d2.a01d78"
-            ]
-        ]
-    },
-    {
-        "id": "9f4b3111.c4c4a",
-        "type": "comment",
-        "z": "fbff916c.a2953",
-        "name": "1. Process each line of some text",
-        "info": "",
-        "x": 150,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "61d047d2.a01d78",
-        "type": "template",
-        "z": "fbff916c.a2953",
-        "name": "",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "one\ntwo\nthree\nfour\nfive",
-        "x": 250,
-        "y": 80,
-        "wires": [
-            [
-                "d30802ea.d88e1"
-            ]
-        ]
-    },
-    {
-        "id": "d30802ea.d88e1",
-        "type": "split",
-        "z": "fbff916c.a2953",
-        "name": "",
-        "splt": "\\n",
-        "x": 370,
-        "y": 80,
-        "wires": [
-            [
-                "422f802a.81a85"
-            ]
-        ]
-    },
-    {
-        "id": "2226f85b.84f418",
-        "type": "join",
-        "z": "fbff916c.a2953",
-        "name": "",
-        "mode": "auto",
-        "build": "string",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "timeout": "",
-        "count": "",
-        "x": 610,
-        "y": 80,
-        "wires": [
-            [
-                "3e69aac5.a94486"
-            ]
-        ]
-    },
-    {
-        "id": "422f802a.81a85",
-        "type": "function",
-        "z": "fbff916c.a2953",
-        "name": "",
-        "func": "msg.payload = msg.parts.index+\": \"+msg.payload;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 490,
-        "y": 80,
-        "wires": [
-            [
-                "2226f85b.84f418"
-            ]
-        ]
-    },
-    {
-        "id": "3e69aac5.a94486",
-        "type": "debug",
-        "z": "fbff916c.a2953",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "false",
-        "x": 780,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "8d90e2de.757ff",
-        "type": "inject",
-        "z": "fbff916c.a2953",
-        "name": "",
-        "topic": "",
-        "payload": "[\"one\",\"two\",\"three\",\"four\",\"five\"]",
-        "payloadType": "json",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 100,
-        "y": 180,
-        "wires": [
-            [
-                "69171c1e.0211a4"
-            ]
-        ]
-    },
-    {
-        "id": "2a77e20d.60b43e",
-        "type": "comment",
-        "z": "fbff916c.a2953",
-        "name": "2. Process each element of an array",
-        "info": "",
-        "x": 160,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "69171c1e.0211a4",
-        "type": "split",
-        "z": "fbff916c.a2953",
-        "name": "",
-        "splt": "\\n",
-        "x": 250,
-        "y": 180,
-        "wires": [
-            [
-                "58a568eb.cfaa78"
-            ]
-        ]
-    },
-    {
-        "id": "4955b081.6c84",
-        "type": "join",
-        "z": "fbff916c.a2953",
-        "name": "",
-        "mode": "auto",
-        "build": "string",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "timeout": "",
-        "count": "",
-        "x": 570,
-        "y": 180,
-        "wires": [
-            [
-                "4f25137b.2fe1fc"
-            ]
-        ]
-    },
-    {
-        "id": "58a568eb.cfaa78",
-        "type": "function",
-        "z": "fbff916c.a2953",
-        "name": "",
-        "func": "msg.payload = msg.parts.index+\": \"+msg.payload;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 410,
-        "y": 180,
-        "wires": [
-            [
-                "4955b081.6c84"
-            ]
-        ]
-    },
-    {
-        "id": "4f25137b.2fe1fc",
-        "type": "debug",
-        "z": "fbff916c.a2953",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "false",
-        "x": 750,
-        "y": 180,
-        "wires": []
-    },
-    {
         "id": "21ddf71f.d00518",
         "type": "function",
         "z": "3045204d.cfbae",
@@ -2409,27 +2188,17 @@
         "name": "Trigger a flow if a message isn’t received after a defined time",
         "info": "",
         "x": 240,
-        "y": 1180,
-        "wires": []
-    },
-    {
-        "id": "596b34ad.e16b1c",
-        "type": "comment",
-        "z": "ac14500e.2c57d",
-        "name": "Limit the rate of messages passing through a flow",
-        "info": "",
-        "x": 210,
-        "y": 1240,
+        "y": 1100,
         "wires": []
     },
     {
         "id": "11644ecd.879951",
         "type": "comment",
         "z": "ac14500e.2c57d",
-        "name": "Trigger a flow when a message property changes value",
+        "name": "Drop messages that have not changed value",
         "info": "",
-        "x": 220,
-        "y": 1300,
+        "x": 190,
+        "y": 1460,
         "wires": []
     },
     {
@@ -2439,7 +2208,7 @@
         "name": "Create a simple state machine",
         "info": "",
         "x": 140,
-        "y": 1360,
+        "y": 1600,
         "wires": []
     },
     {
@@ -2453,16 +2222,6 @@
         "wires": []
     },
     {
-        "id": "b71a5cdb.ddf81",
-        "type": "comment",
-        "z": "fc046f99.4be08",
-        "name": "Automatically retry an action after an error",
-        "info": "",
-        "x": 180,
-        "y": 100,
-        "wires": []
-    },
-    {
         "id": "847e1c97.0ea93",
         "type": "comment",
         "z": "64133d39.bb0394",
@@ -2473,63 +2232,13 @@
         "wires": []
     },
     {
-        "id": "d9c8aeff.11e71",
-        "type": "comment",
-        "z": "64133d39.bb0394",
-        "name": "Convert to/from XML",
-        "info": "",
-        "x": 120,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "48d7a3d2.81a6ac",
-        "type": "comment",
-        "z": "64133d39.bb0394",
-        "name": "Convert to/from YAML",
-        "info": "",
-        "x": 120,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "329ba7c9.e54c18",
-        "type": "comment",
-        "z": "64133d39.bb0394",
-        "name": "Convert to/from CSV",
-        "info": "",
-        "x": 120,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "34f8ae9e.6c03d2",
-        "type": "comment",
-        "z": "64133d39.bb0394",
-        "name": "Extracting data from an HTML page",
-        "info": "",
-        "x": 160,
-        "y": 280,
-        "wires": []
-    },
-    {
         "id": "8fa4a297.9f87d",
         "type": "comment",
         "z": "64133d39.bb0394",
         "name": "Split text into one message per line",
         "info": "",
         "x": 160,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "ffcdbb02.534318",
-        "type": "comment",
-        "z": "6aaa99b3.a7b7b8",
-        "name": "Route a message based on one of its properties",
-        "info": "",
-        "x": 260,
-        "y": 60,
+        "y": 840,
         "wires": []
     },
     {
@@ -2985,5 +2694,1211 @@
         "x": 550,
         "y": 1040,
         "wires": []
+    },
+    {
+        "id": "38caaff4.03f6d",
+        "type": "trigger",
+        "z": "ac14500e.2c57d",
+        "op1": "",
+        "op2": "timeout",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "5",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "name": "Watchdog",
+        "x": 270,
+        "y": 1180,
+        "wires": [
+            [
+                "ae477709.016088"
+            ]
+        ]
+    },
+    {
+        "id": "3da6946e.184a5c",
+        "type": "inject",
+        "z": "ac14500e.2c57d",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 1140,
+        "wires": [
+            [
+                "38caaff4.03f6d",
+                "6ea53ad8.2362a4"
+            ]
+        ]
+    },
+    {
+        "id": "6ea53ad8.2362a4",
+        "type": "debug",
+        "z": "ac14500e.2c57d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 450,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "ae477709.016088",
+        "type": "debug",
+        "z": "ac14500e.2c57d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 450,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "b316b702.160fa8",
+        "type": "comment",
+        "z": "ac14500e.2c57d",
+        "name": "Limit the rate of messages passing through a flow",
+        "info": "",
+        "x": 210,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "bd97c8ed.a5c8d8",
+        "type": "delay",
+        "z": "ac14500e.2c57d",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 390,
+        "y": 1280,
+        "wires": [
+            [
+                "bd66f03e.bdf0c"
+            ]
+        ]
+    },
+    {
+        "id": "1fccc223.7ba87e",
+        "type": "inject",
+        "z": "ac14500e.2c57d",
+        "name": "Inject Array",
+        "topic": "",
+        "payload": "[0,1,2,3,4,5,6,7,8,9]",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 1280,
+        "wires": [
+            [
+                "b2837466.e02a38"
+            ]
+        ]
+    },
+    {
+        "id": "bd66f03e.bdf0c",
+        "type": "debug",
+        "z": "ac14500e.2c57d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 550,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "b2837466.e02a38",
+        "type": "split",
+        "z": "ac14500e.2c57d",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 250,
+        "y": 1280,
+        "wires": [
+            [
+                "bd97c8ed.a5c8d8"
+            ]
+        ]
+    },
+    {
+        "id": "8990635f.a45bb",
+        "type": "comment",
+        "z": "ac14500e.2c57d",
+        "name": "Handle messages at a regular rate",
+        "info": "",
+        "x": 160,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "bd4bdd42.bd1b",
+        "type": "delay",
+        "z": "ac14500e.2c57d",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "5",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 320,
+        "y": 1380,
+        "wires": [
+            [
+                "be20c513.237c78"
+            ]
+        ]
+    },
+    {
+        "id": "8a1bcd7d.f6b67",
+        "type": "inject",
+        "z": "ac14500e.2c57d",
+        "name": "Inject Array",
+        "topic": "",
+        "payload": "[0,1,2,3,4,5,6,7,8,9]",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 1380,
+        "wires": [
+            [
+                "bd4bdd42.bd1b"
+            ]
+        ]
+    },
+    {
+        "id": "be20c513.237c78",
+        "type": "debug",
+        "z": "ac14500e.2c57d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 530,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "87129503.c7b358",
+        "type": "rbe",
+        "z": "ac14500e.2c57d",
+        "name": "report-by-exception",
+        "func": "deadband",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "payload",
+        "x": 300,
+        "y": 1520,
+        "wires": [
+            [
+                "5e2ffc27.c61dd4"
+            ]
+        ]
+    },
+    {
+        "id": "6079638d.df403c",
+        "type": "inject",
+        "z": "ac14500e.2c57d",
+        "name": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 1500,
+        "wires": [
+            [
+                "87129503.c7b358"
+            ]
+        ]
+    },
+    {
+        "id": "2dc49f96.3070c",
+        "type": "inject",
+        "z": "ac14500e.2c57d",
+        "name": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 1540,
+        "wires": [
+            [
+                "87129503.c7b358"
+            ]
+        ]
+    },
+    {
+        "id": "5e2ffc27.c61dd4",
+        "type": "debug",
+        "z": "ac14500e.2c57d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 510,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "2bd6810d.e22ece",
+        "type": "catch",
+        "z": "fc046f99.4be08",
+        "name": "",
+        "scope": [
+            "2c94a22c.91012e"
+        ],
+        "uncaught": false,
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "d16b9fac.8212a"
+            ]
+        ]
+    },
+    {
+        "id": "2c94a22c.91012e",
+        "type": "function",
+        "z": "fc046f99.4be08",
+        "name": "Throw Error",
+        "func": "node.error(\"an example error\", msg);   ",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d16b9fac.8212a",
+        "type": "debug",
+        "z": "fc046f99.4be08",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "error",
+        "targetType": "msg",
+        "x": 300,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c5ee9670.5dbbd8",
+        "type": "inject",
+        "z": "fc046f99.4be08",
+        "name": "Trigger error",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "2c94a22c.91012e"
+            ]
+        ]
+    },
+    {
+        "id": "58f7476a.005d18",
+        "type": "comment",
+        "z": "fc046f99.4be08",
+        "name": "Automatically retry an action after an error",
+        "info": "",
+        "x": 180,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "139b836e.7950ed",
+        "type": "catch",
+        "z": "fc046f99.4be08",
+        "name": "",
+        "scope": [
+            "d7d08440.31b678"
+        ],
+        "uncaught": false,
+        "x": 90,
+        "y": 380,
+        "wires": [
+            [
+                "2166290d.98d736",
+                "9c8ab214.0ecaa"
+            ]
+        ]
+    },
+    {
+        "id": "d7d08440.31b678",
+        "type": "function",
+        "z": "fc046f99.4be08",
+        "name": "Random error",
+        "func": "// Randomly throw an error rather than\n// pass on message.\nif (Math.random() < 0.5) {\n   node.error(\"a random error\", msg);\n} else {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 320,
+        "wires": [
+            [
+                "f22b1e9a.5d89b"
+            ]
+        ]
+    },
+    {
+        "id": "27e61f12.c1a15",
+        "type": "inject",
+        "z": "fc046f99.4be08",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 320,
+        "wires": [
+            [
+                "d7d08440.31b678"
+            ]
+        ]
+    },
+    {
+        "id": "f22b1e9a.5d89b",
+        "type": "debug",
+        "z": "fc046f99.4be08",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 510,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "2166290d.98d736",
+        "type": "delay",
+        "z": "fc046f99.4be08",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 240,
+        "y": 380,
+        "wires": [
+            [
+                "d7d08440.31b678"
+            ]
+        ]
+    },
+    {
+        "id": "9c8ab214.0ecaa",
+        "type": "debug",
+        "z": "fc046f99.4be08",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "error",
+        "targetType": "msg",
+        "x": 240,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "634256b7.2d6818",
+        "type": "inject",
+        "z": "64133d39.bb0394",
+        "name": "JSON String",
+        "topic": "",
+        "payload": "{\"a\":1}",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "a2fe0fc8.095e1"
+            ]
+        ]
+    },
+    {
+        "id": "a2fe0fc8.095e1",
+        "type": "json",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 270,
+        "y": 80,
+        "wires": [
+            [
+                "9a4ce2b8.47698"
+            ]
+        ]
+    },
+    {
+        "id": "9a4ce2b8.47698",
+        "type": "debug",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 430,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "80032e2.7c92cd",
+        "type": "inject",
+        "z": "64133d39.bb0394",
+        "name": "Object",
+        "topic": "",
+        "payload": "{\"a\":1}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 120,
+        "wires": [
+            [
+                "cd40a0f4.4f5ac"
+            ]
+        ]
+    },
+    {
+        "id": "cd40a0f4.4f5ac",
+        "type": "json",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 270,
+        "y": 120,
+        "wires": [
+            [
+                "478b4106.4fd7c"
+            ]
+        ]
+    },
+    {
+        "id": "478b4106.4fd7c",
+        "type": "debug",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 430,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "aa69f344.f8d1f",
+        "type": "comment",
+        "z": "64133d39.bb0394",
+        "name": "Convert to/from YAML",
+        "info": "",
+        "x": 120,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "16750af7.81dec5",
+        "type": "inject",
+        "z": "64133d39.bb0394",
+        "name": "YAML String",
+        "topic": "",
+        "payload": "{\"a\":1}",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 400,
+        "wires": [
+            [
+                "cf3ec6ca.341af8"
+            ]
+        ]
+    },
+    {
+        "id": "ff2bdc86.6fca9",
+        "type": "debug",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "3498b3bc.5789fc",
+        "type": "inject",
+        "z": "64133d39.bb0394",
+        "name": "Object",
+        "topic": "",
+        "payload": "{\"a\":1, \"b\":[1,2,3]}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 440,
+        "wires": [
+            [
+                "c86f7734.23bbd8"
+            ]
+        ]
+    },
+    {
+        "id": "9ea78caa.8a64f",
+        "type": "debug",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 430,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "cf3ec6ca.341af8",
+        "type": "template",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "yaml",
+        "syntax": "plain",
+        "template": "a: 1\nb:\n  - 1\n  - 2\n  - 3",
+        "output": "str",
+        "x": 280,
+        "y": 400,
+        "wires": [
+            [
+                "87cb7d01.add34"
+            ]
+        ]
+    },
+    {
+        "id": "c86f7734.23bbd8",
+        "type": "yaml",
+        "z": "64133d39.bb0394",
+        "property": "payload",
+        "name": "",
+        "x": 250,
+        "y": 440,
+        "wires": [
+            [
+                "9ea78caa.8a64f"
+            ]
+        ]
+    },
+    {
+        "id": "87cb7d01.add34",
+        "type": "yaml",
+        "z": "64133d39.bb0394",
+        "property": "payload",
+        "name": "",
+        "x": 430,
+        "y": 400,
+        "wires": [
+            [
+                "ff2bdc86.6fca9"
+            ]
+        ]
+    },
+    {
+        "id": "3fc8a8e1.994198",
+        "type": "comment",
+        "z": "64133d39.bb0394",
+        "name": "Convert to/from XML",
+        "info": "",
+        "x": 120,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1b546d47.9474e3",
+        "type": "inject",
+        "z": "64133d39.bb0394",
+        "name": "XML String",
+        "topic": "",
+        "payload": "{\"a\":1}",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 240,
+        "wires": [
+            [
+                "d72b2bfd.77d068"
+            ]
+        ]
+    },
+    {
+        "id": "1adf407d.6c4fe",
+        "type": "debug",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "46638890.8ae758",
+        "type": "inject",
+        "z": "64133d39.bb0394",
+        "name": "Object",
+        "topic": "",
+        "payload": "{\"note\":{\"$\":{\"priority\":\"high\"},\"to\":[\"Nick\"],\"from\":[\"Dave\"],\"heading\":[\"Reminder\"],\"body\":[\"Update the website\"]}}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 280,
+        "wires": [
+            [
+                "dae1d291.de0d2"
+            ]
+        ]
+    },
+    {
+        "id": "6fefca67.3669e4",
+        "type": "debug",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 430,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "d72b2bfd.77d068",
+        "type": "template",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "text",
+        "syntax": "plain",
+        "template": "<note priority=\"high\">\n  <to>Nick</to>\n  <from>Dave</from>\n  <heading>Reminder</heading>\n  <body>Update the website</body>\n</note>",
+        "output": "str",
+        "x": 280,
+        "y": 240,
+        "wires": [
+            [
+                "1746464a.87aa4a"
+            ]
+        ]
+    },
+    {
+        "id": "1746464a.87aa4a",
+        "type": "xml",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 430,
+        "y": 240,
+        "wires": [
+            [
+                "1adf407d.6c4fe"
+            ]
+        ]
+    },
+    {
+        "id": "dae1d291.de0d2",
+        "type": "xml",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 250,
+        "y": 280,
+        "wires": [
+            [
+                "6fefca67.3669e4"
+            ]
+        ]
+    },
+    {
+        "id": "a48b7895.08f4d8",
+        "type": "comment",
+        "z": "64133d39.bb0394",
+        "name": "Generate CSV output",
+        "info": "",
+        "x": 120,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "457d9ad6.b737b4",
+        "type": "inject",
+        "z": "64133d39.bb0394",
+        "name": "single",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 560,
+        "wires": [
+            [
+                "1e05fafd.887b05"
+            ]
+        ]
+    },
+    {
+        "id": "1e05fafd.887b05",
+        "type": "change",
+        "z": "64133d39.bb0394",
+        "name": "Generate single payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"a\":$floor(100*$random()),\"b\":$floor(100*$random()),\"c\":$floor(100*$random())}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 560,
+        "wires": [
+            [
+                "e9546682.b39898"
+            ]
+        ]
+    },
+    {
+        "id": "e9546682.b39898",
+        "type": "csv",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": false,
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "a,b,c",
+        "skip": "0",
+        "x": 450,
+        "y": 560,
+        "wires": [
+            [
+                "f83ad3b0.78d32"
+            ]
+        ]
+    },
+    {
+        "id": "f83ad3b0.78d32",
+        "type": "debug",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "ae242f2c.d1c8a",
+        "type": "inject",
+        "z": "64133d39.bb0394",
+        "name": "array",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 620,
+        "wires": [
+            [
+                "7535f521.4a88bc"
+            ]
+        ]
+    },
+    {
+        "id": "7535f521.4a88bc",
+        "type": "change",
+        "z": "64133d39.bb0394",
+        "name": "Generate array payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[\t    { \"a\":$floor(100*$random()),\"b\":$floor(100*$random()),\"c\":$floor(100*$random())},\t    { \"a\":$floor(100*$random()),\"b\":$floor(100*$random()),\"c\":$floor(100*$random())},\t    { \"a\":$floor(100*$random()),\"b\":$floor(100*$random()),\"c\":$floor(100*$random())},\t    { \"a\":$floor(100*$random()),\"b\":$floor(100*$random()),\"c\":$floor(100*$random())}\t]",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 620,
+        "wires": [
+            [
+                "f4e0465f.ef0338"
+            ]
+        ]
+    },
+    {
+        "id": "f4e0465f.ef0338",
+        "type": "csv",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": true,
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "a,b,c",
+        "skip": "0",
+        "x": 450,
+        "y": 620,
+        "wires": [
+            [
+                "6eb67fdf.58626"
+            ]
+        ]
+    },
+    {
+        "id": "6eb67fdf.58626",
+        "type": "debug",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "3a561e7c.086d22",
+        "type": "comment",
+        "z": "64133d39.bb0394",
+        "name": "Generate CSV output",
+        "info": "",
+        "x": 120,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "73e4e16.4d9742",
+        "type": "inject",
+        "z": "64133d39.bb0394",
+        "name": "Inject",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 740,
+        "wires": [
+            [
+                "2bef78fd.ae70f8"
+            ]
+        ]
+    },
+    {
+        "id": "90ed51dc.dcc71",
+        "type": "csv",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": false,
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "1",
+        "x": 410,
+        "y": 740,
+        "wires": [
+            [
+                "9aace6e7.adc538"
+            ]
+        ]
+    },
+    {
+        "id": "9aace6e7.adc538",
+        "type": "debug",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 570,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "2bef78fd.ae70f8",
+        "type": "template",
+        "z": "64133d39.bb0394",
+        "name": "CSV data",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "# This is some random data\na,b,c\n80,18,2\n52,36,10\n91,18,61\n32,47,65",
+        "output": "str",
+        "x": 260,
+        "y": 740,
+        "wires": [
+            [
+                "90ed51dc.dcc71"
+            ]
+        ]
+    },
+    {
+        "id": "df6514f0.029748",
+        "type": "inject",
+        "z": "64133d39.bb0394",
+        "name": "inject",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 110,
+        "y": 880,
+        "wires": [
+            [
+                "11f53f61.2f7be1"
+            ]
+        ]
+    },
+    {
+        "id": "11f53f61.2f7be1",
+        "type": "template",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "one\ntwo\nthree\nfour\nfive",
+        "x": 240,
+        "y": 880,
+        "wires": [
+            [
+                "760c1d71.c29744"
+            ]
+        ]
+    },
+    {
+        "id": "760c1d71.c29744",
+        "type": "split",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "splt": "\\n",
+        "x": 190,
+        "y": 940,
+        "wires": [
+            [
+                "3e427aac.9b9596"
+            ]
+        ]
+    },
+    {
+        "id": "d44d4767.945fd8",
+        "type": "join",
+        "z": "64133d39.bb0394",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "timeout": "",
+        "count": "",
+        "x": 530,
+        "y": 940,
+        "wires": [
+            [
+                "bfe3e43b.85fa88"
+            ]
+        ]
+    },
+    {
+        "id": "bfe3e43b.85fa88",
+        "type": "debug",
+        "z": "64133d39.bb0394",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 650,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "3e427aac.9b9596",
+        "type": "change",
+        "z": "64133d39.bb0394",
+        "name": "Prepend line number",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "(parts.index+1) & \": \" & payload",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 940,
+        "wires": [
+            [
+                "d44d4767.945fd8"
+            ]
+        ]
     }
 ]
