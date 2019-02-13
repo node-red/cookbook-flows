@@ -3918,8 +3918,7 @@
         "wires": [
             [
                 "38950a5.28d15f6",
-                "2c532f67.0330e",
-                "40589e4.eccb56"
+                "2c532f67.0330e"
             ]
         ]
     },
@@ -3933,7 +3932,7 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 650,
+        "x": 610,
         "y": 1660,
         "wires": []
     },
@@ -3941,9 +3940,9 @@
         "id": "2c532f67.0330e",
         "type": "trigger",
         "z": "ac14500e.2c57d",
-        "op1": "",
+        "op1": "reset",
         "op2": "true",
-        "op1type": "nul",
+        "op1type": "str",
         "op2type": "bool",
         "duration": "2",
         "extend": true,
@@ -3951,7 +3950,7 @@
         "reset": "",
         "bytopic": "all",
         "name": "",
-        "x": 280,
+        "x": 260,
         "y": 1700,
         "wires": [
             [
@@ -3970,41 +3969,14 @@
         "duration": "-2",
         "extend": false,
         "units": "s",
-        "reset": "",
+        "reset": "reset",
         "bytopic": "all",
         "name": "",
-        "x": 460,
+        "x": 420,
         "y": 1700,
         "wires": [
             [
                 "38950a5.28d15f6"
-            ]
-        ]
-    },
-    {
-        "id": "40589e4.eccb56",
-        "type": "change",
-        "z": "ac14500e.2c57d",
-        "name": "msg.reset",
-        "rules": [
-            {
-                "t": "set",
-                "p": "reset",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 280,
-        "y": 1740,
-        "wires": [
-            [
-                "e4e42b96.97a338"
             ]
         ]
     }
